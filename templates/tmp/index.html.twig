@@ -1,0 +1,55 @@
+{% extends 'base_front.html.twig' %}
+
+{% block body %}
+    <div style="">
+    <div class="row mb-2" style="margin-left: 19%">
+
+    <div class="col-md-2" >
+        <h3>Client: {{ contrats[0].client }}</h3>
+
+        <img src="{{ asset('front/img/avatar.png') }}"/>
+    </div>
+    <div class="col-md-6">
+        <table class="table-bordered">
+            <thead>
+            <tr>
+
+                <th>Reference</th>
+                <th>NomBien</th>
+                <th>PrixBien</th>
+                <th>vendeur</th>
+                <th>client</th>
+                <th>date</th>
+                <th>agent</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for contrat in contrats %}
+                <tr>
+
+                    <td>{{ contrat.reference }}</td>
+                    <td>{{ contrat.propriete }}</td>
+                    <td>{{ contrat.prixBien }}</td>
+                    <td>{{ contrat.vendeur }}</td>
+                    <td>{{ contrat.client }}</td>
+                    <td>{{ contrat.date ? contrat.date|date('Y-m-d') : '' }}</td>
+                    <td>{{ contrat.agent }}</td>
+
+
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="13">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <button style="margin-left: 78%" class="btn btn-primary btn-success">Exporter en pdf</button>
+
+    </div>
+    </div>
+    </div>
+
+{% endblock %}
