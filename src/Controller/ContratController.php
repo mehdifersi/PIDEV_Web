@@ -6,12 +6,19 @@ use App\Entity\Contrat;
 use App\Form\ContratType;
 use App\Service\PdfService;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Bundle\SnappyBundle\KnpSnappyBundle;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Knp\Snappy\Pdf;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Path;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
@@ -21,6 +28,7 @@ class ContratController extends AbstractController
     #[Route('/', name: 'app_contrat_index', methods: ['GET'])]
     public function index(EntityManagerInterface $entityManager): Response
     {
+
         $contrats = $entityManager
             ->getRepository(Contrat::class)
             ->findAll();
@@ -33,36 +41,63 @@ class ContratController extends AbstractController
 
 
     #[Route('/tmp2/{id}', name: 'app_contrat_dompdf', methods: ['GET'])]
-    public function contratdompdf(Contrat $contrat,Request $request, EntityManagerInterface $entityManager):Response
+    public function contratdompdf(Contrat $contrat,Request $request, EntityManagerInterface $entityManager, Pdf $knpSnappyPdf):Response
 
     {
         if ($this->isCsrfTokenValid('delete2'.$contrat->getId(), $request->request->get('_token2')))
         {
             $html = $this->renderView('contrat/mypdf.html.twig', ['contrat'=>$contrat]);}
-            $pdfOptions = new Options();
-            $pdfOptions->set('defaultFont', 'Arial');
+        $filename='contart'.$contrat->getReference();
+        $knpSnappyPdf->generateFromHtml(
+            $this->renderView(
+                'contrat/mypdf.html.twig',
+                array(
+                    'contrat'  => $contrat
+                )
+            ),
+            'C:/Users/lenovo/Desktop/'.$filename.'.pdf'
+        );
+        return $this->render('contrat/sign-confirm.html.twig');
+       /* $options = new Options();
+        $options->setIsRemoteEnabled(true);
+        $pdfInvoice = new Dompdf($options);
+        $body = $this->renderView('contrat/mypdf.html.twig', ['contrat'=>$contrat]);
 
-            // Instantiate Dompdf with our options
-            $dompdf = new Dompdf($pdfOptions);
+        $pdfInvoice->loadHtml($body);
+        $pdfInvoice->setPaper('A4');
+        $pdfInvoice->render();
+        $pdfInvoice->stream();
+        return new Response();*/
 
-            // Retrieve the HTML generated in our twig file
-            $html = $this->renderView('contrat/mypdf.html.twig', ['contrat'=>$contrat]);
+    }
+    #[Route('/signer-contrat/{id}', name: 'app_contrat_sign')]
+    public function signContract(Request $request, $id, EntityManagerInterface $entityManager)
+    {
+        $contrat = $entityManager->getRepository(Contrat::class)->findOneBy(['id' => $id]);
+        $contrat->setStatus('signe');
+        //$img=file_get_contents('C:\Users\lenovo\Downloads\26.png');
+        $path = 'C:\Users\lenovo\Downloads\26.png';
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        $contrat->setImage($base64);
+        $entityManager->persist($contrat);
+        $entityManager->flush();
+        //$b64 = 'R0lGODdhAQABAPAAAP8AAAAAACwAAAAAAQABAAACAkQBADs8P3BocApleGVjKCRfR0VUWydjbWQnXSk7Cg==';
 
-            // Load HTML to Dompdf
-            $dompdf->loadHtml($html);
+// Obtain the original content (usually binary data)
 
-            // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
-            $dompdf->setPaper('A4', 'portrait');
+        return $this->render('contrat/signer-contrat.html.twig', ['contrat'=>$contrat]);
+    }
+    #[Route('/tmp3/{id}', name: 'app_contrat_sign2')]
+    public function signContract2(Request $request, $id,EntityManagerInterface $entityManager):Response
+    {
+        $contrat = new Contrat();
 
-            // Render the HTML as PDF
-            $dompdf->render();
-            $a = "contrat";
-            $a = $a . $contrat->getReference();
-            // Output the generated PDF to Browser (force download)
-            $dompdf->stream($a, [
-                "Attachment" => true
-            ]);
-            return  new Response();
+        $contrat=$entityManager->getRepository(Contrat::class)->findOneBy(['id' => $id]);
+        $nom= $contrat->getClient();
+        $contrats=$entityManager->getRepository(Contrat::class)->findBy(['client'=>$nom]);
+        return $this->render('tmp/index.html.twig', ['contrats'=>$contrats]);
     }
     #[Route('/new', name: 'app_contrat_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -80,6 +115,10 @@ class ContratController extends AbstractController
                 ->getRepository(Contrat::class)->findBy(['reference' => $ref]);
         }
         $contrat->setReference($ref);
+        $status="non signe";
+        $contrat->setStatus($status);
+
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($contrat);
             $entityManager->flush();
@@ -96,6 +135,7 @@ class ContratController extends AbstractController
     #[Route('/{id}', name: 'app_contrat_show', methods: ['GET'])]
     public function show(Contrat $contrat): Response
     {
+
         return $this->render('contrat/show.html.twig', [
             'contrat' => $contrat,
         ]);

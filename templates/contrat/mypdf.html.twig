@@ -1,8 +1,13 @@
-<div style=" align-items: center; margin-right: 20%; margin-left: 20%; border-style: solid;
+<div style=" background-color:#B2D8D8; align-items: center; margin-right: 20%; margin-left: 20%; border-style: solid;
   border-width: 5px 5px; ">
 <div style="margin-left: 30%">
-    <h2 style="align-items: center">details contrat</h2>
+    <h2 style="align-items: center; color: #005B96; font-family: Impact">details contrat</h2>
     <br>
+
+
+
+
+
 
     <table style="align-items: center" class="table">
 
@@ -37,13 +42,22 @@
             <th>Date</th>
             <td>{{ contrat.date ? contrat.date|date('Y-m-d') : '' }}</td>
         </tr>
-        <tr>
-            <th>Status</th>
-            <td>{{ contrat.status }}</td>
-        </tr>
+
 
         </tbody>
     </table>
     <br>
+    <div style="margin-left: 50%">
+        <b style="margin-bottom: 50%; color: #FF0000;">Signature: </b>
+        <img src="{{ 'http://localhost/FirstProject853/public/assets/img/' ~ contrat.id ~ '.png'}}" height="80px" width="100px">
+    </div>
+
 </div>
+    <p style="margin-left: 65%; font-family: 'Traditional Arabic'; font-size: 12px; ">
+    Agence Vivalavilla pour immobilier.
+    </p>
+    <p style="margin-left: 85%; font-family: 'Traditional Arabic'; font-size: 12px;">
+    2022-2023
+    </p>
 </div>
+
