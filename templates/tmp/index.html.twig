@@ -1,0 +1,53 @@
+{% extends 'base_front.html.twig' %}
+
+{% block body %}
+
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+    <body>
+    <div style="margin-left: 5%; margin-right: 5%">
+    <div class="card-header" height="100">
+        <h3 class="text-center font-weight-bolder my-8">Liste des contrat par client</h3>
+
+
+    </div><form method="post" action="{{ path('recherchecontrat') }}">
+        <div class="input-group">
+            <input type="text"  name="search" class="form-control" type="text" placeholder="Entrez le REF du contrat à chercher..." aria-label="Search for..." aria-describedby="btnNavbarSearch">
+            <input type="submit" value="Recherche" class="btn btn-primary" id="btnNavbarSearch" type="button"><!-- <i class="fas fa-search"></i> Font Awesome fontawesome.com --></input>
+        </div>
+    </form>
+        <br>
+    <table border="1" class="table table-bordered border-primary table-primary">
+        <tr>
+
+            <th>Reference</th>
+            <th>PrixBien</th>
+            <th>Vendeur</th>
+            <th>Client</th>
+            <th>Date</th>
+            <th>Agent</th>
+        </tr>
+        <tr {% for contrat in contrats %} >
+            <td>{{ contrat.reference }}</td>
+            <td>{{ contrat.prixBien }}</td>
+            <td>
+                {{ contrat.vendeur }}
+            </td>
+                      <td>{{ contrat.client }}</td>
+            <td>{{ contrat.date ? contrat.date|date('Y-m-d') : '' }}</td>
+            <td>{{ contrat.agent }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    </div>
+    </body>
+    </html>
+{% endblock %}

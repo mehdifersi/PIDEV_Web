@@ -1,0 +1,18 @@
+{% extends 'templateBack.html.twig' %}
+{% block body %}
+    <div class="text-center">
+        <div class="card-header" height="100">
+            <h3 class="text-center font-weight-bolder my-8">Voici le Rating de votre Region Selectionner </h3>
+
+        </div>
+        <img  alt="bottsrap" class="img-thumbnail"  src="{{ asset("assets/img/rate.jpg") }}" height="250" width="400">
+    </div>
+    <div class="text-center">
+
+<div class="badge bg-primary text-wrap  text-center" style="width: 6rem; ">
+        <h1>  Note moyenne est : {{ rate }} </h1>
+    </div>
+    </div>
+
+
+{% endblock %}

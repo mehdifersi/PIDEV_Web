@@ -1,0 +1,45 @@
+{% extends 'templatefront.html.twig' %}
+{% block body %}
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+    <body>
+    <div class="card-header" height="100">
+        <h3 class="text-center font-weight-bolder my-8">Liste des addresses </h3>
+        <h6 class="text-center font-weight-normal my-8"> vous trouverez ci-dessous tous les addresses de la région choisie</h6>
+    </div>
+        <hr>
+        <div class="text-center">
+        <img  alt="bottsrap" src="{{ asset("assets/img/adresse.jpeg") }}" height="300" width="500">
+    </div>
+    <hr>
+    <table border="1" class="table table-success table-striped">
+        <tr>
+            <th  class="h4">Region</th>
+            <th  class="h4">Avenue</th>
+            <th  class="h4">Numero rue</th>
+            <th  class="h4">Code Postal</th>
+
+
+        </tr>
+        <tr{% for s in adresse %} >
+
+            <td class="h5">{{ s.IdAgence}}</td>
+            <td class="h5">{{ s.avenue}}</td>
+            <td class="h5">{{ s.numeroRue}}</td>
+            <td class="h5">{{ s.codePostal}}</td>
+
+
+        </tr {% endfor %} >
+    </table>
+
+    <a href="{{ path('affichesfront')}}"><button class="btn btn-info">Back</button></a>
+    </body>
+    </html>
+{% endblock %}

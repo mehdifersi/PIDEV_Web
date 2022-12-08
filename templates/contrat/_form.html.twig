@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div style=" margin-right: 200px;">
+<div style=" ">
+    <div class="card-header"><h3 class="text-center font-weight-light my-4">informations contrat</h3></div>
+    <div class="card-body">
+
+      {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div >
+                        <label>Propriete </label>
+                        {{ form_widget(form.propriete,{'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(form.propriete) }}
+                    </div>
+                </div>
+
+                    <div class="col-md-6">
+                        <div >
+                            <label>Prix de vente </label>
+                            {{ form_widget(form.prixBien,{'attr':{'class':'form-control'}}) }}
+                            {{ form_errors(form.prixBien) }}
+                        </div>
+
+</div>
+            </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <div >
+                    <label>vendeur </label>
+                    {{ form_widget(form.vendeur,{'attr':{'class':'form-control'}}) }}
+                    {{ form_errors(form.vendeur) }}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div >
+                    <label>client </label>
+                    {{ form_widget(form.client,{'attr':{'class':'form-control'}}) }}
+                    {{ form_errors(form.client) }}
+                </div>
+
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <div >
+                    <label>agent superviseur </label>
+                    {{ form_widget(form.agent,{'attr':{'class':'form-control'}}) }}
+                    {{ form_errors(form.agent) }}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div >
+                    <label>date de vente </label>
+                    {{ form_widget(form.date,{'attr':{'class':'form-control'}}) }}
+
+                </div>
+
+            </div>
+        </div>
+            <div class="mt-4 mb-0">
+                <div class="d-grid">
+
+                    {{ form_widget(form.confirmer,{'attr':{'class':'btn btn-primary btn-success'}}) }}
+                </div>
+            </div>
+        {{ form_end(form) }}
+    </div>
+
+</div>
+    </div>
+{% endblock %}

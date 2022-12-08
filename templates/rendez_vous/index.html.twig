@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rendez-Vous index{% endblock %}
+
+{% block body %}
+    <h1>Rendez-Vous</h1>
+
+    <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-table me-1"></i>
+                                    DataTable Example
+                                </div>
+                                <div class="card-body">
+                                    <table id="datatablesSimple">
+      <thead>
+                <tr>
+                    <th>Id Rendez-Vous</th>
+                    <th>Référence</th>
+                    <th>Date du Rendez-Vous</th>
+                    <th>Id Propriétaire</th>
+                    <th>Id Visiteur</th>
+                    <th>Lieu du Visite</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for rendez_vou in rendez_vouses %}
+                <tr>
+                    <td>{{ rendez_vou.id }}</td>
+                    <td>{{ rendez_vou.ref }}</td>
+                    <td>{{ rendez_vou.daterdv ? rendez_vou.daterdv|date('Y-m-d') : '' }}</td>
+                    <td>{{ rendez_vou.idc1 }}</td>
+                    <td>{{ rendez_vou.idc2 }}</td>
+                    <td>{{ rendez_vou.lieurdv }}</td>
+                    <td>
+                        <a class="bi bi-gear" href="{{ path('app_rendez_vous_edit', {'id': rendez_vou.id}) }}"><button class="btn btn-info"><ion-icon name="settings-outline"></ion-icon></button></a>
+                        <a href="{{ path('app_rendez_vous_show', {'id': rendez_vou.id}) }}"><button class="btn btn-info"><ion-icon name="eye-outline"></ion-icon></button></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+                                    </table>
+                                </div>
+                            </div>
+ <br><a href="{{ path('app_rendez_vous_new') }}"><button class="btn btn-info"><ion-icon name="add-circle-outline"></ion-icon></button></a>
+                    </main>
+                    <footer class="py-4 bg-light mt-auto">
+                        <div class="container-fluid px-4">
+                            <div class="d-flex align-items-center justify-content-between small">
+                                <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                                <div>
+                                    <a href="#">Privacy Policy</a>
+                                    &middot;
+                                    <a href="#">Terms &amp; Conditions</a>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+            <script src="js/scripts.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+            <script src="js/datatables-simple-demo.js"></script>
+        </body>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+{% endblock %}
