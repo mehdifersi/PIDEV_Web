@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DevisService{% endblock %}
+
+{% block body %}
+    <h1>DevisService</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ devis_service.id }}</td>
+            </tr>
+            <tr>
+                <th>NomClient</th>
+                <td>{{ devis_service.nomClient }}</td>
+            </tr>
+            <tr>
+                <th>Ref</th>
+                <td>{{ devis_service.ref }}</td>
+            </tr>
+            <tr>
+                <th>NomCommercial</th>
+                <td>{{ devis_service.nomCommercial }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ devis_service.date ? devis_service.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ValableJusqua</th>
+                <td>{{ devis_service.valableJusqua ? devis_service.valableJusqua|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mission</th>
+                <td>{{ devis_service.mission }}</td>
+            </tr>
+            <tr>
+                <th>DateCommencement</th>
+                <td>{{ devis_service.dateCommencement ? devis_service.dateCommencement|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>PrixTtc</th>
+                <td>{{ devis_service.prixTtc }}</td>
+            </tr>
+            <tr>
+                <th>PrixHt</th>
+                <td>{{ devis_service.prixHt }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ devis_service.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_devis_service_index') }}">back to list</a>
+
+    <a href="{{ path('app_devis_service_edit', {'id': devis_service.id}) }}">edit</a>
+
+    {{ include('devis_service/_delete_form.html.twig') }}
+{% endblock %}

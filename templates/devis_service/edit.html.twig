@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit DevisService{% endblock %}
+
+{% block body %}
+    <h1>Edit DevisService</h1>
+
+    {{ include('devis_service/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_devis_service_index') }}">back to list</a>
+
+    {{ include('devis_service/_delete_form.html.twig') }}
+{% endblock %}

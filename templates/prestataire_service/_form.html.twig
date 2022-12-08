@@ -1,0 +1,54 @@
+<div style=" margin-right: 200px;">
+    <div style=" ">
+        <div class="card-header"><h3 class="text-center font-weight-light my-4">Ajouter un Prestataire</h3></div>
+        <div class="card-body">
+            {{ form_start(form,{'attr':{'novalidate':'novalidate'}} ) }}
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div >
+                        <label>Nom commercial </label>
+                        {{ form_widget(form.nomCommercial,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div >
+                        <label>Domaine Service </label>
+                        {{ form_widget(form.domaineService,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+                </div>
+            </div>
+                <div class="row mb-3">
+                <div class="col-md-6">
+                    <div >
+                        <label>Numèro Telephone </label>
+                        {{ form_widget(form.numTel,{'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(form.numTel) }}
+                    </div>
+
+                </div>
+
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div >
+                        <label>Email </label>
+                        {{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+                </div>
+            </div>
+                </div>
+
+            <div class="mt-4 mb-0">
+                <div class="d-grid">
+                    {{ form_widget(form.Save,{'attr':{'class':'btn btn-primary btn-block'}}) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
+    </div>
+    </div>
+</div>

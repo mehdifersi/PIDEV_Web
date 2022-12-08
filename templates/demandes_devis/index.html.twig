@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des demandes Devis{% endblock %}
+
+{% block body %}
+    <h1>Liste des demandes Devis</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ref</th>
+                <th>Duree</th>
+                <th>Mission</th>
+                <th>DateCommencement</th>
+                <th>Traiter</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for demandes_devi in demandes_devis %}
+            <tr>
+                <td>{{ demandes_devi.id }}</td>
+                <td>{{ demandes_devi.ref }}</td>
+                <td>{{ demandes_devi.duree }}</td>
+                <td>{{ demandes_devi.mission }}</td>
+                <td>{{ demandes_devi.dateCommencement ? demandes_devi.dateCommencement|date('Y-m-d') : '' }}</td>
+                <td>{{ demandes_devi.traiter }}</td>
+                <td>
+                    <a class='btn btn-primary btn-block' href="{{ path('app_demandes_devis_show', {'id': demandes_devi.id}) }}">show</a>
+                    <a class='btn btn-primary btn-block' href="{{ path('app_demandes_devis_edit', {'id': demandes_devi.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class='btn btn-primary btn-block' href="{{ path('app_demandes_devis_new') }}">Create new</a>
+{% endblock %}
