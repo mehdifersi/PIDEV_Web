@@ -1,0 +1,78 @@
+{% extends 'templatefront.html.twig' %}
+
+{% block body %}
+
+    <div style=" margin-right: 200px;">
+        <div style=" ">
+            <div class="card-header"><h3 class="text-center font-weight-light my-4">Ajouter un bien</h3></div>
+            <div class="card-body">
+                {{ form_start(form) }}
+
+                <div class="row mb-3">
+
+                    <div class="col-md-6">
+                        <div >
+                            <label>refAnnonce </label>
+                            {{ form_widget(form.refAnnonce,{'attr':{'class':'form-control'}}) }}
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div >
+                            <label>RefBien </label>
+                            {{ form_widget(form.refBien,{'attr':{'class':'form-control'}}) }}
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div >
+                            <label>titreAnnonce </label>
+                            {{ form_widget(form.titreAnnonce,{'attr':{'class':'form-control'}}) }}
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div >
+                            <label>afficheAnnonce </label>
+                            {{ form_widget(form.afficheAnnonce,{'attr':{'class':'form-control'}}) }}
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div >
+                            <label>dateDepot </label>
+                            {{ form_widget(form.dateDepot,{'attr':{'class':'form-control'}}) }}
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="d-grid">
+
+                        {{ form_widget(form.ajouter,{'attr':{'class':'btn btn-primary btn-block'}}) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+
+        </div>
+
+    </div>
+    {# {{ form_start(form) }}
+{{ form_widget(form) }}
+<button>Ajout</button>
+{{ form_end(form) }} #}
+    {# {{ form(form) }} #}
+{% endblock %}

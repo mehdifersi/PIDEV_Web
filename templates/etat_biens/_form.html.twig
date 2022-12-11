@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div style=" margin-right: 200px;">
+        <div style=" ">
+            <div class="card-header"><h3 class="text-center font-weight-light my-4">informations De Propriete</h3></div>
+            <div class="card-body">
+
+                {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div >
+                            <label>Propriete </label>
+                            {{ form_widget(form.idBien,{'attr':{'class':'form-control'}}) }}
+                            {{ form_errors(form.idBien) }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div >
+                            <label>etat </label>
+                            {{ form_widget(form.etat,{'attr':{'class':'form-control'}}) }}
+                            {{ form_errors(form.etat) }}
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div >
+                            <label>nombre de pannes </label>
+                            {{ form_widget(form.nombrePannes,{'attr':{'class':'form-control'}}) }}
+                            {{ form_errors(form.nombrePannes) }}
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div >
+                            <label>description </label>
+                            {{ form_widget(form.description,{'attr':{'class':'form-control'}}) }}
+                            {{ form_errors(form.description) }}
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="mt-4 mb-0">
+                    <div class="d-grid">
+
+                        {{ form_widget(form.confirmer,{'attr':{'class':'btn btn-primary btn-success'}}) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

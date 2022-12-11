@@ -1,0 +1,57 @@
+{% extends 'templatefront.html.twig' %}
+{% block body %}
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+    <body>
+    <form method="post" action="{{ path('rechercheAgencefront') }}">
+        <label class="font-weight-bold display-5 ml-4 mr-3"> Chercher par Region   </label>
+        <input type="text" name="search">
+        <button type="submit" value="Recherche"  class="btn btn-danger"> Rechercher </button>
+    </form>
+    <hr>
+    <table  class ="table mx-3 table-striped "   >
+        <tr>
+            <th scope="col" >Region</th>
+            <th scope="col">Numero Telephone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Site Web</th>
+            <th scope="col">Nom du responsable</th>
+            <th scope="col">Rate</th>
+            <th scope="col">QR</th>
+            <th scope="col">Adresse</th>
+
+
+        </tr>
+
+        <tr{% for c in agence %} >
+            <td>{{ c.region }}</td>
+            <td>{{ c.numeroTel }}</td>
+            <td>{{ c.email }}</td>
+            <td>{{ c.webSite }}</td>
+            <td>{{ c.nomDuResponsable }}</td>
+
+            <td><a href="{{ path('ajouterRating',{'id':c.id})}}"><button class="btn btn-info btn btn-warning ">Rate</button></a></td>
+            <td><a href="{{ path('bb',{'id':c.id})}}"><button class="btn btn-info">QR</button></a></td>
+            <td><a href="{{ path('adresseAg',{'id':c.id})}}"><button class="btn btn-info">Adresse</button></a></td>
+
+        </tr {% endfor %} >
+    </table>
+    <div class="content-wrapper">
+        <br>
+    </div>
+
+
+
+    </body>
+    <div class="d-grid gap-2 col-6 mx-5">
+    <a href="{{ path('affichesQR')}}" ><button class="btn btn-primary btn-lg float-lg-none">Back to show</button></a>
+    </div>
+</html>
+{% endblock %}

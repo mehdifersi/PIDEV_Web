@@ -1,0 +1,70 @@
+<div style=" margin-left: 2%;">
+    <div style=" ">
+        <div class="card-header"><h3 class="text-center font-weight-light my-4">Ajouter une demande de devis</h3></div>
+        <div class="card-body">
+            {{ form_start(form) }}
+
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+                    <div >
+                        <label>Durée </label>
+                        {{ form_widget(form.duree,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <div >
+                        <label>Mission </label>
+                        {{ form_widget(form.mission,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div >
+                        <label>Date de commencement</label>
+                        {{ form_widget(form.dateCommencement,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div >
+                        <label>ID Client </label>
+                        {{ form_widget(form.idClient,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-6">
+                    <div >
+                        <label>ID Prestataire </label>
+                        {{ form_widget(form.idPrestataire,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="mt-4 mb-0">
+                <div class="d-grid">
+                    {{ form_widget(form.Save,{'attr':{'class':'btn btn-primary btn-block'}}) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+</div>

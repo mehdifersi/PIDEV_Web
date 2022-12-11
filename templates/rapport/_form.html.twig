@@ -1,0 +1,82 @@
+
+<div style=" margin-right: 200px;">
+    <div style=" ">
+        <div class="card-header"><h3 class="text-center font-weight-light my-4">Ajouter un Rapport</h3></div>
+        <div class="card-body">
+            {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div >
+                        <label>Id Bien</label>
+                        {{ form_widget(form.idbien,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div >
+                        <label>Id Rendez-Vous </label>
+                        {{ form_widget(form.idrdv,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div >
+                        <label>Date du Rendez-Vous </label>
+                        {{ form_widget(form.daterdv,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div >
+                        <label>Note du Bien</label>
+                        {{ form_widget(form.notebien,{'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(form.notebien) }}
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div >
+                        <label>Etat du Bien </label>
+                        {{ form_widget(form.etatbien,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div >
+                        <label>Position du Bien  </label>
+                        {{ form_widget(form.positionbien,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div >
+                        <label>Voisinage du Bien  </label>
+                        {{ form_widget(form.voisinagebien,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 mb-0">
+                <div class="d-grid">
+
+                    {{ form_widget(form.Save,{'attr':{'class':'btn btn-primary btn-block'}}) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+</div>

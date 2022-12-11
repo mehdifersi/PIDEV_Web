@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rapport{% endblock %}
+
+{% block body %}
+    <h1>Rapport</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id Rapport</th>
+                <td>{{ rapport.idrapport }}</td>
+            </tr>
+            <tr>
+                <th>Id Bien</th>
+                <td>{{ rapport.idbien }}</td>
+            </tr>
+            <tr>
+                <th>Id Rendez-Vous</th>
+                <td>{{ rapport.idrdv }}</td>
+            </tr>
+            <tr>
+                <th>Date de Rendez-Vous</th>
+                <td>{{ rapport.daterdv }}</td>
+            </tr>
+            <tr>
+                <th>Note du Bien</th>
+                <td>{{ rapport.notebien }}</td>
+            </tr>
+            <tr>
+                <th>Etat du Bien</th>
+                <td>{{ rapport.etatbien }}</td>
+            </tr>
+            <tr>
+                <th>Position du Bien</th>
+                <td>{{ rapport.positionbien }}</td>
+            </tr>
+            <tr>
+                <th>Voisinage du Bien</th>
+                <td>{{ rapport.voisinagebien }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{ include('rapport/_delete_form.html.twig') }}
+    <br><a href="{{ path('app_rapport_index') }}"><button class="btn btn-info">Retour</button></a>
+    <br><a href="{{ path('app_rapport_edit', {'idrapport': rapport.idrapport}) }}"><button class="btn btn-info">Modifier</button></a>
+
+
+
+
+{% endblock %}

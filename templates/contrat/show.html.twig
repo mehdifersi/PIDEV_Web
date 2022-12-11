@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contrat{% endblock %}
+
+{% block body %}
+    {% if contrat.status == 'non signe' %}
+    <script>
+        alert('Pour Obtenir une version pdf du contrat, il faut le signer d abord. ')
+    </script>
+    {% endif %}
+
+    {% set tsawer='assets/img/' %}
+    {% for c in tsawer %}
+    <p>
+        c
+    </p>
+    {% endfor %}
+    <br>
+    <div style="align-items: center; margin-right: 20%; margin-left: 20%; border-style: solid;
+  border-width: 5px 5px; ">
+
+        <h2 style="align-items: center">details contrat</h2>
+        <br>
+
+        <table  class="table">
+
+        <tbody>
+
+        <tr >
+            <th data-sortable="">Reference</th>
+            <td>{{ contrat.reference }}</td>
+        </tr>
+
+        <tr>
+            <th >Prix de vente</th>
+            <td>{{ contrat.PrixBien }}</td>
+        </tr>
+
+        <tr>
+            <th>Vendeur</th>
+            <td>{{ contrat.vendeur }}</td>
+        </tr>
+
+        <tr>
+            <th>Client</th>
+            <td>{{ contrat.client }}</td>
+        </tr>
+
+        <tr>
+            <th>Agent</th>
+            <td>{{ contrat.agent }}</td>
+        </tr>
+
+        <tr>
+                <th>Date</th>
+                <td>{{ contrat.date ? contrat.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ contrat.status }}
+                {% if contrat.status == 'non signe' %}
+                    <a class="btn btn-primary btn-danger" href="{{ path('app_contrat_sign' , {'id': contrat.id})}}">signer</a>
+                {% endif %}
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+<br>
+        <div class="mt-4 mb-0" style="margin-left: 25%; margin-right: 25%; align-items: center;">
+            <div class="d-grid">
+                <a class="btn btn-primary btn-warning" href="{{ path('app_contrat_edit', {'id': contrat.id})}}">edit</a>
+                <br>
+                <a class="btn btn-primary btn-dark" href="{{ path('app_contrat_index') }}">back to list</a>
+                <br>
+                {% if contrat.status == 'signe' %}
+                <a class="btn btn-primary btn-success" href="{{ path('app_contrat_dompdf', {'id': contrat.id}) }}">telecharger</a>
+                {% endif %}
+                <input type="hidden"  name="_token2" value="{{ csrf_token('delete2' ~ contrat.id) }}">
+                <input type="hidden"  name="_signtoken2" value="{{ csrf_token('sign2' ~ contrat.id) }}">
+            </div>
+        </div>
+    </div>
+
+    {{ include('contrat/_delete_form.html.twig') }}
+{% endblock %}

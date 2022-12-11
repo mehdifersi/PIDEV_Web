@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etat du bien{% endblock %}
+
+{% block body %}
+    <br>
+    <div style="align-items: center; margin-right: 20%; margin-left: 20%; border-style: solid;
+  border-width: 5px 5px; ">
+
+        <h2 style="align-items: center">details propriete</h2>
+        <br>
+
+        <table  class="table">
+
+            <tbody>
+
+            <tr>
+                <th data-sortable="">Propriete</th>
+                <td>{{ contrat.idBien }}</td>
+            </tr>
+
+            <tr>
+                <th >Etat</th>
+                <td>{{ contrat.etat}}</td>
+            </tr>
+
+            <tr>
+                <th>Nombre de pannes</th>
+                <td>{{ contrat.nombrePannes }}</td>
+            </tr>
+
+            <tr>
+                <th>Description</th>
+                <td>{{ contrat.description }}</td>
+            </tr>
+
+
+
+            </tbody>
+        </table>
+        <br>
+        <div class="mt-4 mb-0" style="margin-left: 25%; margin-right: 25%; align-items: center;">
+            <div class="d-grid">
+                <a class="btn btn-primary btn-warning" href="{{ path('app_etat_biens_edit', {'id': contrat.id}) }}">edit</a>
+                <br>
+                <a class="btn btn-primary btn-dark" href="{{ path('app_etat_biens_index') }}">back to list</a>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    {{ include('etat_biens/_delete_form.html.twig') }}
+{% endblock %}

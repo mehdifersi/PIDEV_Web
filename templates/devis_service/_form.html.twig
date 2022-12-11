@@ -1,0 +1,104 @@
+<div style=" margin-right: 200px;">
+    <div style=" ">
+        <div class="card-header"><h3 class="text-center font-weight-light my-4">Ajouter un Prestataire</h3></div>
+        <div class="card-body">
+            {{ form_start(form,{'attr':{'novalidate':'novalidate'}} ) }}
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div >
+                        <label>Nom Client </label>
+                        {{ form_widget(form.nomClient,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div >
+                        <label>Date </label>
+                        {{ form_widget(form.date,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div >
+                        <label>Valable Jusqu'à </label>
+                        {{ form_widget(form.valableJusquA,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div >
+                        <label>Mission </label>
+                        {{ form_widget(form.mission,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div >
+                        <label>Date Commencement</label>
+                        {{ form_widget(form.dateCommencement,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div >
+                        <label>Prix HT </label>
+                        {{ form_widget(form.prixHt,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div >
+                        <label>Prix TTC </label>
+                        {{ form_widget(form.prixTtc,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div >
+                        <input type="button"  value="Calculer" class="btn btn-primary btn-block" >
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div >
+                        <label>Description</label>
+                        {{ form_widget(form.description,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div >
+                        <label>ID Prestataitre </label>
+                        {{ form_widget(form.idPrestataitre,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div >
+                        <label>ID Client </label>
+                        {{ form_widget(form.idClient,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div >
+                        <label>Nom Commercial </label>
+                        {{ form_widget(form.nomCommercial,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 mb-0">
+                <div class="d-grid">
+                    {{ form_widget(form.Save,{'attr':{'class':'btn btn-primary btn-block'}}) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+</div>

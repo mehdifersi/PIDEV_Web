@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Devis{% endblock %}
+
+{% block body %}
+    <h1>Liste des Devis</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomClient</th>
+                <th>Ref</th>
+                <th>NomCommercial</th>
+                <th>Date</th>
+                <th>ValableJusqua</th>
+                <th>Mission</th>
+                <th>DateCommencement</th>
+                <th>PrixTtc</th>
+                <th>PrixHt</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for devis_service in devis_services %}
+            <tr>
+                <td>{{ devis_service.id }}</td>
+                <td>{{ devis_service.nomClient }}</td>
+                <td>{{ devis_service.ref }}</td>
+                <td>{{ devis_service.nomCommercial }}</td>
+                <td>{{ devis_service.date ? devis_service.date|date('Y-m-d') : '' }}</td>
+                <td>{{ devis_service.valableJusqua ? devis_service.valableJusqua|date('Y-m-d') : '' }}</td>
+                <td>{{ devis_service.mission }}</td>
+                <td>{{ devis_service.dateCommencement ? devis_service.dateCommencement|date('Y-m-d') : '' }}</td>
+                <td>{{ devis_service.prixTtc }}</td>
+                <td>{{ devis_service.prixHt }}</td>
+                <td>{{ devis_service.description }}</td>
+                <td>
+                    <a class='btn btn-primary btn-block' href="{{ path('app_devis_service_show', {'id': devis_service.id}) }}">show</a>
+                    <a class='btn btn-primary btn-block' href="{{ path('app_devis_service_edit', {'id': devis_service.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class='btn btn-primary btn-block' href="{{ path('app_devis_service_new') }}">Create new</a>
+{% endblock %}

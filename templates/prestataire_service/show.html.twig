@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PrestataireService{% endblock %}
+
+{% block body %}
+    <h1>PrestataireService</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ prestataire_service.id }}</td>
+            </tr>
+            <tr>
+                <th>Ref</th>
+                <td>{{ prestataire_service.ref }}</td>
+            </tr>
+            <tr>
+                <th>NomCommercial</th>
+                <td>{{ prestataire_service.nomCommercial }}</td>
+            </tr>
+            <tr>
+                <th>DomaineService</th>
+                <td>{{ prestataire_service.domaineService }}</td>
+            </tr>
+            <tr>
+                <th>NumTel</th>
+                <td>{{ prestataire_service.numTel }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ prestataire_service.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_prestataire_service_index') }}">back to list</a>
+
+    <a href="{{ path('app_prestataire_service_edit', {'id': prestataire_service.id}) }}">edit</a>
+
+    {{ include('prestataire_service/_delete_form.html.twig') }}
+{% endblock %}

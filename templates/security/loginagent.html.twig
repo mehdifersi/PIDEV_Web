@@ -1,0 +1,32 @@
+{% extends 'template_loginagent.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<form method="post">
+
+    <div class="center">
+        <h1>Login</h1>
+        <form method="post">
+            <div class="txt_field">
+                <input type="email"  name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                <span></span>
+                <label>Email</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                <span></span>
+                <label>Password</label>
+            </div>
+            <div class="pass">Forgot Password?</div>
+
+           <a class="btn btn-primary btn-success" href ="{{ path('app_dashboard_agents') }}">se connecter</a>
+            <div class="signup_link">
+                Vous etes un agent? <a href="{{ path('app_register')}}">Agent</a>
+            </div>
+            <div class="signup_link">
+                Vous etes un admin? <a href="{{ path('app_register')}}">Admin</a>
+            </div>
+        </form>
+    </div>
+    {% endblock %}
