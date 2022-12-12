@@ -1,0 +1,53 @@
+{% extends 'templateBack.html.twig' %}
+{% block title %}New Agence{% endblock %}
+
+{% block body %}
+    <div style=" margin-right: 200px;">
+        <div style=" ">
+            <div class="card-header"><h3 class="text-center font-weight-light my-4">Ajouter une Adresse </h3></div>
+            <div class="card-body">
+                {{ form_start(form) }}
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div >
+                            <label>Avenue</label>
+                            {{ form_widget(form.avenue,{'attr':{'class':'form-control'}}) }}
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div >
+                            <label>Numéro de rue</label>
+                            {{ form_widget(form.numeroRue,{'attr':{'class':'form-control'}}) }}
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div >
+                            <label>Code Postal</label>
+                            {{ form_widget(form.codePostal,{'attr':{'class':'form-control'}}) }}
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div >
+                            <label>Region</label>
+                            {{ form_widget(form.id_Agence,{'attr':{'class':'form-control'}}) }}
+
+                        </div>
+
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

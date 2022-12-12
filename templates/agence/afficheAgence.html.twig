@@ -1,0 +1,52 @@
+{% extends 'templateBack.html.twig' %}
+{% block body %}
+
+    <div class="card-header" height="100">
+        <h3 class="text-center font-weight-bolder my-8">Liste des Agences</h3>
+
+    </div>
+    <form method="post" action="{{ path('rechercheAgence') }}">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" type="text" placeholder="Entrez référence du bien à chercher..." aria-label="Search for..." aria-describedby="btnNavbarSearch">
+            <button type="submit" value="Recherche" class="btn btn-primary" id="btnNavbarSearch" type="button"><svg class="svg-inline--fa fa-magnifying-glass" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"></path></svg><!-- <i class="fas fa-search"></i> Font Awesome fontawesome.com --></button>
+        </div>
+    </form>
+
+
+<table border="1" class="table table-striped table-hover">
+
+    <tr>
+        <th>Region</th>
+        <th>Numero Telephone</th>
+        <th>Email</th>
+        <th>Site Web</th>
+        <th>Nom du responsable</th>
+        <th>N.employees</th>
+        <th>Jour de creation</th>
+        <th>Delete</th>
+        <th>Update</th>
+        <th>Rating</th>
+
+    </tr>
+
+    <tr{% for c in agence %} >
+        <td>{{ c.region }}</td>
+        <td>{{ c.numeroTel }}</td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.webSite }}</td>
+        <td>{{ c.nomDuResponsable }}</td>
+        <td>{{ c.nombreDesEmployees }}</td>
+        <td>{{ c.jourDeCreation|date('d-m-Y') }}</td>
+
+        <td><a href="{{ path('d',{'id':c.id}) }}"><button type="button" class="btn btn-danger">Delete</button>
+            </a></td>
+        <td><a href="{{ path('update',{'id':c.id}) }}"><button type="button" class="btn btn-success">Update</button>
+            </a></td>
+        <td><a href="{{ path('rate',{'id':c.id}) }}"><button type="button" class="btn btn-info">Rating</button>
+            </a></td>
+
+    </tr {% endfor %} >
+</table>
+<a href="{{ path('ajouters')}}"><button class="btn btn-info">Ajouter une agence </button></a>
+
+{% endblock %}
