@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New EtatBiens{% endblock %}
+
+{% block body %}
+
+    <a href="{{ path('app_etat_biens_index') }}">back to list</a>
+
+    {{ include('etat_biens/_form.html.twig') }}
+
+
+{% endblock %}

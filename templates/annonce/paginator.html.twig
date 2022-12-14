@@ -1,0 +1,17 @@
+{%  extends 'templatefront.html.twig' %}
+{% block body %}
+
+    {% for article in donnees %}
+
+        {% include 'annonce/article.html.twig'  %}
+
+    {% endfor %}
+
+    <div class="container">
+        <div class="row">
+            <div class="d-flex align-items-center justify-content-center">
+                {{ knp_pagination_render(donnees) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

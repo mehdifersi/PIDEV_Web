@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Rapport{% endblock %}
+
+{% block body %}
+    <h1>Ajouter Rapport</h1>
+
+    {{ include('rapport/_form.html.twig') }}
+
+
+    <br><a href="{{ path('app_rapport_index') }}"><button class="btn btn-info">Retour</button></a>
+{% endblock %}

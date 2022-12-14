@@ -1,0 +1,56 @@
+{% extends 'templatefront.html.twig' %}
+{% block title %}New Agence{% endblock %}
+
+{% block body  %}
+    <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+    <script src="/code.jquery.com/jquery.js"></script>
+    <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+    {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+
+    <div style=" margin-right: 200px;">
+        <div style=" ">
+            <div class="card-header" height="100">
+                <h3 class="text-center font-weight-bolder my-8">Rating</h3>
+                <h6 class="text-center font-weight-normal my-8">Afin de nous aider à améliorer nos services pour vous garantir un 𝘀𝗮𝘁𝗶𝘀𝗳𝗮𝗰𝘁𝗶𝗼𝗻 𝗱𝘂𝗿𝗮𝗯𝗹𝗲, vous pouvez nous aider en notant le service par région </h6>
+
+            </div>
+
+            <div class="card-body">
+                {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+
+                <div class="text-center">
+                    <img  alt="bottsrap" src="{{ asset("assets/img/ratinggg.jpg") }}" height="250" width="400">
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div >
+
+                            <h5> <label > Ajouter votre Cin </label></h5>
+                            {{ form_widget(form.Cin,{'attr':{'class':'form-control'}}) }}
+                            {{ form_errors(form.Cin) }}
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div >
+                            <h5> <label>RatingScore </label> </h5>
+                            {{ form_widget(form.RatingScore,{'attr':{'class':'form-control'}}) }}
+                            {{ form_errors(form.RatingScore) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    {{ form_widget(form.confirmer,{'attr':{'class':'btn btn-primary btn-success btn btn-success btn-lg float-right'}} )}}
+                </div>
+
+
+                {{ form_end(form) }}
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

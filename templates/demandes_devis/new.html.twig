@@ -1,0 +1,16 @@
+{% extends 'templatefront.html.twig' %}
+
+{% block title %}New DemandesDevis{% endblock %}
+
+{% block body %}
+    <div style="margin-left: 7%; align-items: center;">
+        <div style="margin-left: 30%">
+            <h3>Create new DemandesDevis</h3>
+        </div>
+
+        {{ include('demandes_devis/_form.html.twig') }}
+
+        <a href="{{ path('app_demandes_devis_index') }}">back to list</a>
+    </div>
+
+{% endblock %}

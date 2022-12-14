@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div style="align-items: center">
+    votre contrat est disponible en forme pdf sous votre bureau.
+</div>
+    <div style="margin-left: 30%">
+        <br>
+        <a class="btn btn-primary btn-warning" href="{{ path('app_contrat_index') }}">Retour</a>
+        <a class="btn btn-primary btn-success" href="{{ path('app_contrat_new') }}">nouveau contrat</a>
+
+    </div>
+{% endblock %}

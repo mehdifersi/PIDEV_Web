@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des contrats{% endblock %}
+
+{% block body %}
+    <div  style=" margin-top: 5%">
+    <h1 class="col-md-6"> Liste des Contrats</h1>
+        <div style="margin-left: 5%; margin-right: 5%">
+        <form method="post" action="{{ path('recherchecontrat') }}">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch">
+                <button type="submit" value="Recherche" class="btn btn-primary" id="btnNavbarSearch" type="button"><svg class="svg-inline--fa fa-magnifying-glass" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"></path></svg><!-- <i class="fas fa-search"></i> Font Awesome fontawesome.com --></button>
+            </div>
+        </form>
+    </div>
+        <br>
+    </div>
+
+    <div class="card-header">
+        <svg class="svg-inline--fa fa-table me-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="table" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M448 32C483.3 32 512 60.65 512 96V416C512 451.3 483.3 480 448 480H64C28.65 480 0 451.3 0 416V96C0 60.65 28.65 32 64 32H448zM224 256V160H64V256H224zM64 320V416H224V320H64zM288 416H448V320H288V416zM448 256V160H288V256H448z"></path></svg><!-- <i class="fas fa-table me-1"></i> Font Awesome fontawesome.com -->
+        Accedez aux contrats
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Reference</th>
+                <th>NomBien</th>
+                <th>PrixBien</th>
+                <th>vendeur</th>
+                <th>client</th>
+                <th>date</th>
+                <th>agent</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contrat in contrats %}
+            <tr>
+
+                <td>{{ contrat.reference }}</td>
+                <td>{{ contrat.propriete }}</td>
+                <td>{{ contrat.prixBien }}</td>
+                <td>{{ contrat.vendeur }}</td>
+                <td>{{ contrat.client }}</td>
+                <td>{{ contrat.date ? contrat.date|date('Y-m-d') : '' }}</td>
+                <td>{{ contrat.agent }}</td>
+
+                <td >
+                    <a href="{{ path('app_contrat_show', {'id': contrat.id}) }}" class="btn btn-primary btn-success">afficher</a>
+
+                     <a href="{{ path('app_contrat_edit', {'id': contrat.id}) }}" class="btn btn-primary btn-warning">modifier</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        <div class="btn btn-primary" style="background-color: cyan; display: flex; margin-right: 89%; margin-left: 1%; align-items: center">
+    <a href="{{ path('app_contrat_new') }}" style="align-items: center">Create new</a>
+        </div>
+            {% endblock %}

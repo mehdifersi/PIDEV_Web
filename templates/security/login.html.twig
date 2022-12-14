@@ -1,0 +1,46 @@
+{% extends 'template_login.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+
+    <div class="center">
+        <h1>Login</h1>
+        <form method="post">
+            <div class="txt_field">
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                <span></span>
+                <label>Email</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                <span></span>
+                <label>Password</label>
+            </div>
+            <a href="{{ path('app_forgot')}}">Forgot Password?</a>      
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}">
+            <input type="submit" value="Login">
+            <div class="signup_link">
+                Not a member? <a href="{{ path('app_register')}}">Signup</a>
+            </div>
+            <div class="signup_link">
+                Vous etes un agent? <a href="{{ path('app_agent_login')}}">Agent</a>
+            </div>
+            <div class="signup_link">
+                Vous etes un admin? <a href="{{ path('app_admin_login')}}">Admin</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

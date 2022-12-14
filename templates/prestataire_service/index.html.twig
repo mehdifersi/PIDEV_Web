@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} liste des Prestataires de Service {% endblock %}
+
+{% block body %}
+
+    <h1>liste des Prestataires de Service</h1>
+    <div class="form-outline mb-4">
+        <input type="search" class="form-control" id="datatable-search-input">
+        <label class="form-label" for="datatable-search-input">Search</label>
+    </div>
+    <div id="datatable">
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ref</th>
+                <th>NomCommercial</th>
+                <th>DomaineService</th>
+                <th>NumTel</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for prestataire_service in prestataire_services %}
+            <tr>
+                <td>{{ prestataire_service.id }}</td>
+                <td>{{ prestataire_service.ref }}</td>
+                <td>{{ prestataire_service.nomCommercial }}</td>
+                <td>{{ prestataire_service.domaineService }}</td>
+                <td>{{ prestataire_service.numTel }}</td>
+                <td>{{ prestataire_service.email }}</td>
+                <td>
+                    <a class='btn btn-primary btn-block' href="{{ path('app_prestataire_service_show', {'id': prestataire_service.id}) }}">show</a>
+                    <a class='btn btn-primary btn-block' href="{{ path('app_prestataire_service_edit', {'id': prestataire_service.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<div >
+    <a class='btn btn-primary btn-block' href="{{ path('app_prestataire_service_new') }} ">Create new</a>
+</div>
+    {% endblock %}

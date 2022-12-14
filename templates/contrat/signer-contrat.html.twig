@@ -1,0 +1,154 @@
+{%  extends'base.html.twig' %}
+{% block javascripts %}
+<script type="text/javascript">
+    var canvas, ctx, flag = false,
+        prevX = 0,
+        currX = 0,
+        prevY = 0,
+        currY = 0,
+        dot_flag = false;
+
+    var x = "black",
+        y = 2;
+
+    function init() {
+        console.log(window.location.href);
+        const urlParams = new URLSearchParams(window.location.href);
+        console.log(urlParams.values());
+
+        canvas = document.getElementById('can');
+        ctx = canvas.getContext("2d");
+        w = canvas.width;
+        h = canvas.height;
+
+        canvas.addEventListener("mousemove", function (e) {
+            findxy('move', e)
+        }, false);
+        canvas.addEventListener("mousedown", function (e) {
+            findxy('down', e)
+        }, false);
+        canvas.addEventListener("mouseup", function (e) {
+            findxy('up', e)
+        }, false);
+        canvas.addEventListener("mouseout", function (e) {
+            findxy('out', e)
+        }, false);
+    }
+
+
+
+    function draw() {
+        ctx.beginPath();
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(currX, currY);
+        ctx.strokeStyle = x;
+        ctx.lineWidth = y;
+        ctx.stroke();
+        ctx.closePath();
+    }
+
+
+
+    function save() {
+        let ref= window.location.href.slice(-2);
+        console.log(ref);
+        ref+='.png';
+        const link = document.createElement('a');
+        link.download = ref;
+        link.href = canvas.toDataURL();
+        console.log(link.href);
+        link.click();
+        link.delete;
+
+        var object = new FileSystemDirectoryEntry;
+        let dire="C:\\Users\\lenovo\\Downloads\\";
+        dire+= ref;
+        console.log(ref);
+        var file =  object.GetFile(ref);
+        file.Move("C:\\Users\\lenovo\\Desktop\\FirstProject853\\public\\UploadedSignatures");
+        document.write("File is moved successfully");
+        filesystemobject.CopyFile(ref, "C:\\Users\\lenovo\\Desktop\\FirstProject853\\public\\UploadedSignatures", overwrite);
+        alert("Votre signature est bien reçue. ")
+        save
+    }
+    /// new function is here
+
+    function erase() {
+        var m = confirm("Want to clear");
+        if (m) {
+            ctx.clearRect(0, 0, w, h);
+            document.getElementById("canvasimg").style.display = "none";
+        }
+    }
+    function moveFile(){
+        var object = new ActiveXObject("Scripting.FileSystemObject");
+        let dire="C:\\Users\\lenovo\\Downloads\\";
+        var file = object.GetFile("C:\\Users\\lenovo\\Downloads\\phptest.php");
+        file.Move("C:\\wamp\\");
+        document.write("File is moved successfully");
+    }
+
+    function findxy(res, e) {
+        if (res == 'down') {
+            prevX = currX;
+            prevY = currY;
+            currX = e.clientX - canvas.offsetLeft;
+            currY = e.clientY - canvas.offsetTop;
+
+            flag = true;
+            dot_flag = true;
+            if (dot_flag) {
+                ctx.beginPath();
+                ctx.fillStyle = x;
+                ctx.fillRect(currX, currY, 2, 2);
+                ctx.closePath();
+                dot_flag = false;
+            }
+        }
+        if (res == 'up' || res == "out") {
+            flag = false;
+        }
+        if (res == 'move') {
+            if (flag) {
+                prevX = currX;
+                prevY = currY;
+                currX = e.clientX - canvas.offsetLeft;
+                currY = e.clientY - canvas.offsetTop;
+                draw();
+            }
+        }
+    }
+</script>
+{% endblock %}
+{% block body %}
+
+    <div style="margin-left: 40%" >
+        <div style="align-items: center ">
+            <div class="card-header"><h3 class="text-center font-weight-light my-4">entrez votre signature</h3></div>
+            <div class="card-body">
+
+                <body  onload="init()">
+                <div>Votre signature doit etre unique pour des raisons de confidentialité. </div>
+                <br>
+                    <canvas id="can" width="400" height="200" style="position:relative;top:10%;left:10%;border:2px solid;"></canvas>
+
+                    <div style="margin-left: 12%">
+                        <br>
+                    <input class="btn btn-primary btn-success" type="button" value="Soumettre" id="btn" size="30" onclick="save()" style="position:relative;top:55%;left:10%;">
+
+                <input class="btn btn-primary btn-danger" type="button" value="Reset" id="clr" size="23" onclick="erase()" style="position:relative;top:55%;left:15%;">
+
+                    </div>
+                <div style="margin-left: 30%">
+                    <br>
+                    <a class="btn btn-primary btn-warning" href="{{ path('app_contrat_show', {'id': contrat.id}) }}">obtenir document</a>
+
+                </div>
+                </body>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

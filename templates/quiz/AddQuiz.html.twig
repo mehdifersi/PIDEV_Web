@@ -1,0 +1,78 @@
+{% extends 'templateback.html.twig' %}
+{% block body %}
+    <div style=" margin-right: 200px;">
+        <div style=" ">
+            <div class="card-header"><h3 class="text-center font-weight-light my-4">Ajouter un Quiz</h3></div>
+            <div class="card-body">
+                {{ form_start(form) }}
+
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div >
+                            <label>quetion </label>
+                            {{ form_widget(form.question,{'attr':{'class':'form-control'}}) }}
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row mb-3">
+
+                    <div class="col-md-6">
+                        <div >
+                            <label>option1 </label>
+                            {{ form_widget(form.option1,{'attr':{'class':'form-control'}}) }}
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div >
+                            <label>option2 </label>
+                            {{ form_widget(form.option2,{'attr':{'class':'form-control'}}) }}
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row mb-3">
+
+
+                    <div class="col-md-6">
+                        <div >
+                            <label>Option3 </label>
+                            {{ form_widget(form.option3,{'attr':{'class':'form-control'}}) }}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+
+                    <div class="col-md-6">
+                        <div >
+                            <label>Reponse </label>
+                            {{ form_widget(form.reponse,{'attr':{'class':'form-control'}}) }}
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="d-grid">
+
+                        {{ form_widget(form.ajouter,{'attr':{'class':'btn btn-primary btn-block'}}) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
